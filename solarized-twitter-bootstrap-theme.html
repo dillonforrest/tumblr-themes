@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+  <head> 
+ 
+    <meta name="text:Google Analytics UA Code" content="" /> 
+    <meta name="image:Background" content="http://static.tumblr.com/vv8cdma/Ddzm1ypam/chruch.png" />
+    <meta name="text:Application Stylesheet URL" content="" />
+    <meta name="if:Show Description On Index" content="1" />
+
+    <!-- Sharing Buttons -->
+    <meta name="if:Show Tweet Button" content="1"/>
+    <meta name="text:Tweet Via Account" content=""/>
+    <meta name="text:Tweet Follow Account" content=""/>
+    <meta name="if:Show Like Button" content="1"/>
+
+    <!-- Comments -->
+    <meta name="text:Disqus Shortname" content=""/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <meta name="description" content="{MetaDescription}" /> 
+    <link href="{Favicon}" rel="shortcut icon" />
+    <link rel="apple-touch-icon" href="{PortraitURL-128}">
+    <link rel="alternate" type="application/rss+xml" href="{RSS}"> 
+    
+    <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}{block:Pagination} - {lang:Page CurrentPage of TotalPages}{/block:Pagination}</title> 
+
+    <!-- ======== STYLES ======== -->
+
+    <link href="http://static.tumblr.com/vv8cdma/Pigm0fc2m/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      
+      /* --- high-level --- */
+      body { 
+        padding-top: 40px;
+        background-color: #002b36; 
+        color: #839496;
+      } 
+      
+      /* --- tags --- */
+      .tags { margin-bottom: 10px;}
+      .tag {margin-bottom: 5px;}
+      .tag-btn {
+          font-size: 11px;
+          line-height: 14px;
+          margin-bottom: 5px;
+          color: #002b36;
+          background-color: #839496;
+          display: inline-block;
+          padding: 2px 6px 2px 6px;
+          text-align: center;
+          vertical-align: middle;
+          border: 1px solid #93a1a1;
+          border-top: 2px;
+          border-bottom-color: #839496;
+          border-radius: 4px;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          box-shadow: #
+          -webkit-box-shadow: #
+          -moz-box-shadow: 
+      }
+      .tags a {text-decoration: none;}
+      
+      /* --- entry --- */
+      .entry { background-color: #073642; border-radius: 5px; padding-top: 20px; padding-bottom: 20px; position: relative; }
+      .entry > * { padding-left: 20px; padding-right: 20px; }
+      .date { margin-bottom: 10px; }
+      .entry .title { margin-bottom: 10px; }
+      .entry h2 { margin-top: 20px; }
+
+      /* --- author --- */
+      .author { margin-bottom: 10px; }
+      .author img { float: left; background-color: white; }
+      .author .author-name { line-height: 16px; padding-top: 8px; margin-left: 64px; }
+      .author .author-name .attribution { font-size: 80%; }
+      @media (max-width: 980px) { 
+        .author img { float: none; }  
+        .author .author-name { margin-left: 0; }
+      }  
+
+      /* --- notes and comments --- */
+      .notes-container, .comments-container { background-color: white; border-radius: 3px; position: relative; margin-top: 20px; }
+      .notes-container .notes, .comments-container #disqus_thread { padding: 20px; margin: 0; }
+      .notes-container ol.notes { list-style: none; }
+
+      /* --- sharing links --- */
+      .share-links { margin-top: 10px; }
+
+
+    </style>
+    <link href="http://static.tumblr.com/vv8cdma/pVJm0fbxk/bootstrap-responsive.min.css" rel="stylesheet">
+
+    {block:IfApplicationStylesheetURL}
+    <!-- Import application styling -->
+    <link href="{text:Application Stylesheet URL}" rel="stylesheet">
+    {/block:IfApplicationStylesheetURL}
+ 
+    <style type="text/css">
+      
+      .hero-unit {background-color: #073642;}
+      
+      /* --- nameplate --- */
+      .nameplate {
+          text-align: center;
+          text-transform: lowercase;
+          color: #93a1a1;
+      }
+      .nameplate .o {color: #b58900;}
+      
+      /* --- miniheader --- */
+      .miniheader .title {
+          font-weight: bold;
+          color: #93a1a1;
+      }
+      
+      .miniheader .PA {color: #d33682;}
+      .miniheader .NYC {color: #2aa198;}
+      .all-miniheaders {margin-top: 20px;}
+      
+      /* --- misc structural --- */
+      hr { // divider line between posts
+          margin: 18px 0;
+          border: 0px;
+          border-top: 1px solid #93a1a1;
+          border-bottom: 1px solid #93a1a1;
+      }
+      
+      .notes-container .notes, .comments-container #disqus_thread {
+          background-color: #073642;
+          margin-top: 0px;
+          border-radius: 2px;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+      }
+      
+      blockquote {
+          border-left: 1px solid #0088cc;
+          font-size: 13px;
+          line-height: 13px;
+          font-style: italic;
+      }
+      
+      blockquote p {
+          font-size: 13px;
+          line-height: 18px;
+          font-style: italic;
+      }
+      
+      .pager li a {
+          background-color: #93a1a1;
+          border: 1px solid #93a1a1;
+      }
+      
+      .pager li a:hover {
+          background-color: #93a1a1;
+          border: 1px solid #93a1a1;
+      }
+
+      
+    </style> 
+
+  </head> 
+  <body>
+
+    {block:IfShowLikeButton}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=325405900855984";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    {/block:IfShowLikeButton}
+
+    <header>
+    </header>
+
+
+    <div class="container">
+
+      {block:IndexPage}
+      {block:IfShowDescriptionOnIndex}
+      <div class="hero-unit offset1 span8">
+        <h1 class='nameplate'>Dill<span class='o'>o</span>n Forrest</h1>
+        <div class='row all-miniheaders'>
+            <div class='span2 miniheader'>
+                <div class='miniheader title'>About Me</div>
+                <div>Originally from <span class='PA'>PA</span>. Currently in <span class='NYC'>NYC</span>. My last name is misleading. This world is my canvas.</div>
+            </div>
+            <div class='span2 miniheader'>
+                <div class='title'>Blog</div>
+                <div class='content'>I write short essays. Topics vary. I try to make them worth your while.</div>
+            </div>
+            <div class='span2 miniheader'>
+                <div class='title'>Stuff I Like</div>
+                <div class='content'>Dancing, programming, cooking, fitness, writing, New York City, startups, building, learning.</div>
+            </div>
+            <div class='span2 miniheader'>
+                <div class='title'>Contact</div>
+                <div class='content'>
+                    <a href='mailto:dillonforrest@gmail.com'>dillonforrest@gmail.com</a><br/>
+                    <a href='http://www.linkedin.com/in/dillonforrest'>linkedin</a> | <a href='http://www.github.com/dillonforrest'>github</a><br/>
+                    <a href='http://www.twitter.com/dillonforrest'>twitter</a> | <a href='http://www.facebook.com/dillonforrest'>facebook</a><br/>
+                </div>
+            </div>
+        </div>
+      </div>
+      {/block:IfShowDescriptionOnIndex}
+      {/block:IndexPage}
+
+      <div class="posts">
+
+        {block:SearchPage}
+        <li class="POST ALT TEXT MINI">
+          <div class="ENTRY">
+            <div class="TITLE CENTER">
+              {lang:Your search for SearchQuery returned SearchResultCount results 2} 
+            </div>
+            {block:NoSearchResults}
+            <div class="TITLE">
+              {lang:No search results for SearchQuery 2}
+            </div>
+            {/block:NoSearchResults}            
+          </div>
+        </li>
+        {/block:SearchPage}
+
+        {block:DayPage}
+        <li class="POST ALT TEXT MINI">
+          <div class="ENTRY">
+            <div class="TITLE CENTER">
+              {lang:Viewing everything posted on Month DayOfMonth Year}
+            </div>            
+          </div>
+        </li>       
+        {/block:DayPage}
+              
+        {block:Posts}
+        <div class="row post {block:Text}text{/block:Text}{block:Photo}photo{/block:Photo}{block:Quote}quote{/block:Quote}{block:Video}video{/block:Video}{block:Link}link{/block:Link}{block:Chat}chat{/block:Chat}{block:Audio}audio{/block:Audio}{block:Answer}answer{/block:Answer}">  
+
+          <div class="span2 offset2">
+            {block:GroupMembers} 
+              <div class="author-name"><span class="attribution">Posted by</span><br/><a href="http://www.dillonforrest.com" target="_blank">Dillon</a></div>
+              <div style="clear: both"></div>
+            {/block:GroupMembers} 
+
+            <div class="date">
+              {block:Date}
+              {block:NotReblog}
+                <a href="{Permalink}">{lang:Posted TimeAgo}</a>
+              {/block:NotReblog}
+              {block:Reblog}
+                {lang:PostTypeNoun reblogged from ReblogParentTitle 2}
+              {/block:Reblog}
+              {/block:Date}
+
+              {block:HasTags}
+              with tags:
+              {/block:HasTags}
+            </div> <!-- .date -->
+
+            {block:HasTags}
+            <div class="tags">
+              {block:Tags}
+              <a class="tag-btn" href="{TagURL}">{Tag}</a>
+              {/block:Tags}
+            </div> <!-- .tags -->
+            {/block:HasTags}
+
+            {block:NoteCount} 
+            <div class="notes">
+              <a href="{Permalink}#notes">
+                <i class="icon-heart"></i> {NoteCountWithLabel}
+              </a>
+            </div>
+            {/block:NoteCount} 
+
+            {block:IfDisqusShortname}
+            <a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a>
+            {/block:IfDisqusShortname}
+
+          </div> <!-- .span2 -->
+
+          <div class="span6 entry">
+
+            {block:GroupMembers} 
+            <div class="speech-bubble"></div>
+            {/block:GroupMembers} 
+          
+            <div class="title">
+              
+              {block:Title}
+              <h2>
+                <a href="{Permalink}">
+                  {Title}
+                </a>
+              </h2>
+              {/block:Title}
+                                        
+            </div> <!-- .title -->
+            
+            <div class="POST">
+
+              <!-- ANSWER -->
+              
+              {block:Answer}
+                
+                <div class="QUOTEINFO">
+                  
+                  <div class="QUOTEMARK"></div>
+                  <div class="TEXT">
+                    {Question}
+                  </div>
+                
+                </div>
+                
+                <p>{lang:Asked by Asker}</p>
+                
+                <div class="BREAK"></div>
+                
+                <div class="RESPONSE">
+                
+                  {Answer}
+                
+                </div>
+
+              {/block:Answer}
+              
+              <!-- /ANSWER -->
+              
+              <!-- TEXT -->
+              
+              {block:Text}
+                
+                {Body}
+                
+              {/block:Text}
+              
+              <!-- /TEXT -->
+              
+              <!-- VIDEO -->
+              
+              {block:Video}
+                
+                {Video-500}
+                
+                {block:Caption}
+                  {Caption}
+                {/block:Caption}
+                
+              {/block:Video}
+              
+              <!-- /VIDEO -->
+              
+              <!-- PHOTO -->
+              
+              {block:Photo}
+              
+                <div class="CENTER">
+              
+                  {LinkOpenTag}<img alt="{PhotoAlt}" src="{PhotoURL-500}" />{LinkCloseTag}
+
+                </div>
+
+                {block:Caption}
+                  <div class="CAPTION">
+                    {Caption}
+                  </div>
+                {/block:Caption}
+                
+              {/block:Photo}
+              
+              <!-- /PHOTO -->
+              
+              <!-- QUOTE -->
+              
+              {block:Quote}
+              
+                <div class="QUOTEINFO">
+                  
+                  <div class="QUOTEMARK"></div>
+                  <div class="TEXT">
+                    {Quote}
+                  </div>
+                
+                </div>
+                
+                <div class="BREAK"></div>
+                
+                {block:Source}
+                <div class="BY">
+                
+                  {Source}
+                
+                </div>
+                {/block:Source}
+                
+              {/block:Quote}
+              
+              <!-- /QUOTE -->
+
+              <!-- LINK -->
+              
+              {block:Link}
+                
+                <div class="THE-LINK">
+                
+                  <a href="{URL}" target="{Target}">{Name}</a>
+                    
+                </div>
+                
+                <div class="INFO">
+                  <a href="{URL}" target="{Target}">
+                    {URL}
+                  </a>
+                </div>
+                
+                {block:Description}         
+                <div class="MARGIN">{Description}</div>
+                {/block:Description}
+                
+              {/block:Link}
+              
+              <!-- /LINK -->
+
+              <!-- CHAT -->
+              
+              {block:Chat}
+                
+                <ul class="CHAT">
+                
+                  {block:Lines}
+                  <li class="{Alt} {UserNumber}">{block:Label}<strong>{Label}</strong> {/block:Label}{Line}</li>
+                  {/block:Lines}
+                  
+                </ul>
+                
+              {/block:Chat}
+              
+              <!-- /CHAT -->
+
+              <!-- AUDIO -->
+              
+              {block:Audio}
+                
+                <div class="PLAYER">
+                
+                  <div class="ALBUMART">
+                    
+                    {block:AlbumArt}<img  alt="" src="{AlbumArtURL}" />{/block:AlbumArt}
+                    
+                  </div>
+                  
+                  <div class="OVERLAY">
+                    
+                    <div class="OBJ">
+                      {AudioPlayerGrey}
+                    </div>
+                  
+                    <div class="COUNT">
+                      This track has had {PlayCountWithLabel}
+                    </div>
+                    
+                    <div class="TRACK">
+                      {block:TrackName}
+                        <strong>{TrackName}</strong>
+                      {/block:TrackName}
+                      
+                      {block:TrackName}
+                        {block:Artist}
+                          by
+                        {/block:Artist}
+                      {/block:TrackName}
+                      
+                      {block:Artist}
+                      <a href="http://last.fm/{Artist}">{Artist}</a>
+                      {/block:Artist}
+                    </div>
+                    
+                  </div>
+                
+                </div>
+                
+                {block:Caption}
+                  {Caption}
+                {/block:Caption}
+                
+              {/block:Audio}
+              
+              <!-- /AUDIO -->   
+              
+            </div>
+                    
+          </div> <!-- .entry -->
+                  
+        </div> <!-- .row .post -->
+
+        {block:PermalinkPage} 
+        {block:IfDisqusShortname}
+        <div class="row">
+          <div class="span8 offset2 comments-container">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+          </div> <!-- .comments-container -->
+        </div>
+        {/block:IfDisqusShortname}
+        {/block:PermalinkPage} 
+
+        {block:NoteCount}
+        <div class="row">
+          <div class="span8 offset2 notes-container" id="notes">
+            {PostNotes}
+          </div> <!-- .notes-container -->
+        </div>
+        {/block:NoteCount}
+
+        <hr/>
+
+        {/block:Posts}
+                                            
+      </div> <!-- .posts -->
+      
+      {block:Pagination}
+      <ul class="pager">
+        {block:PreviousPage}
+        <li><a href="{PreviousPage}">{lang:Previous page}</a></li>
+        {/block:PreviousPage}
+
+        {block:NextPage}
+        <li><a href="{NextPage}">{lang:Next page}</a></li>
+        {/block:NextPage}
+      </ul>
+      {/block:Pagination}
+
+      <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p><a href="https://github.com/mikejarema/bootstrap-tumblr-theme/">Bootstrap Tumblr Theme</a> by <a href="http://mikejarema.com">Mike Jarema</a>.</p>
+        <p>{lang:Powered by Tumblr 2}.</p>
+        <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+      </footer>
+      
+    </div>
+    
+    {block:IfGoogleAnalyticsUACode}
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("{text:Google Analytics UA Code}");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+    {/block:IfGoogleAnalyticsUACode}
+
+    <!-- ======== SCRIPTS ======== -->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.tumblr.com/vv8cdma/obbm0fc3v/bootstrap.min.js"></script>    
+
+    {block:IfShowTweetButton}
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    {/block:IfShowTweetButton}
+
+    {block:IfDisqusShortname}
+    <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+      var links = document.getElementsByTagName('a');
+      var query = '?';
+      for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+          query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+      }
+      document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+    {/block:IfDisqusShortname}
+
+  </body> 
+</html>
+
